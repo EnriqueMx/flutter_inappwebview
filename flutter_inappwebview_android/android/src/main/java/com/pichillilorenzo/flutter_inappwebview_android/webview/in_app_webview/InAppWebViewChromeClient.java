@@ -638,7 +638,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
 
      WebView.HitTestResult result = view.getHitTestResult();
     String url = result.getExtra();
- Log.e(LOG_TAG, "init step 001-"+result.getType().toString());
+ Log.e(LOG_TAG, "init step 001-"+Integer.toString(result.getType()));
     // Ensure that images with hyperlink return the correct URL, not the image source
     if (result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
       Message href = view.getHandler().obtainMessage();
@@ -667,7 +667,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
         }
       }
     }
-Log.e(LOG_TAG, "init step 002-"+result.getType().toString());
+Log.e(LOG_TAG, "init step 002-");
     URLRequest request = new URLRequest(url, "GET", null, null);
     CreateWindowAction createWindowAction = new CreateWindowAction(
             request,
