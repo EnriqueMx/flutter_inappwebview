@@ -638,35 +638,23 @@ public String convertWithStream(Map<?, ?> map) {
       windowId = plugin.inAppWebViewManager.windowAutoincrementId;
     }
 
-    WebView.HitTestResult result = view.getHitTestResult();
+     WebView.HitTestResult result = view.getHitTestResult();
     String url = result.getExtra();
-System.err.format("DEBUG JAVA-DATA NEXT 001 \n");
-    Message href = view.getHandler().obtainMessage();
-      view.requestFocusNodeHref(href);
-      Bundle data0 = href.getData();
-      if (data0 != null) {
- String mysingleton0 = data0.toString();
-       
-            Log.v("DEBUG JAVA-DATA0:", "put MYSINGLETON="+mysingleton0);
-      }
+
     // Ensure that images with hyperlink return the correct URL, not the image source
     if (result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
       Message href = view.getHandler().obtainMessage();
       view.requestFocusNodeHref(href);
       Bundle data = href.getData();
       if (data != null) {
-        System.err.format("DEBUG JAVA-DATA NEXT \n");
-         String mysingleton = data.toString();
        
-            Log.v("DEBUG JAVA-DATA:", "put MYSINGLETON="+mysingleton);
-        //System.err.format("DEBUG JAVA-DATA: %s\n", convertWithStream(data));
         String imageUrl = data.getString("url");
         if (imageUrl != null && !imageUrl.isEmpty()) {
           url = imageUrl;
         }
       }
     }
-System.err.format("DEBUG JAVA-DATA NEXT 002 :"+result.getType().toString());
+
     URLRequest request = new URLRequest(url, "GET", null, null);
     CreateWindowAction createWindowAction = new CreateWindowAction(
             request,
