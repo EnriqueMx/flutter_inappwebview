@@ -629,7 +629,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
   @Override
   public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, final Message resultMsg) {
     int windowId = 0;
-   Log.e(LOG_TAG, "init step 002");
+   Log.e(LOG_TAG, "init step 000");
 
     if (plugin != null && plugin.inAppWebViewManager != null) {
       plugin.inAppWebViewManager.windowAutoincrementId++;
@@ -638,7 +638,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
 
      WebView.HitTestResult result = view.getHitTestResult();
     String url = result.getExtra();
-
+ Log.e(LOG_TAG, "init step 001-"+result.getType().toString());
     // Ensure that images with hyperlink return the correct URL, not the image source
     if (result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
       Message href = view.getHandler().obtainMessage();
@@ -652,7 +652,22 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
         }
       }
     }
-
+    else
+    {
+      Message href = view.getHandler().obtainMessage();
+      view.requestFocusNodeHref(href);
+      Bundle data = href.getData();
+      Log.e(LOG_TAG, "init step 001a-");
+      Log.e(LOG_TAG, "init step 001b-"+data.toString());
+      if (data != null) {
+       
+        String imageUrl = data.getString("url");
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+          url = imageUrl;
+        }
+      }
+    }
+Log.e(LOG_TAG, "init step 002-"+result.getType().toString());
     URLRequest request = new URLRequest(url, "GET", null, null);
     CreateWindowAction createWindowAction = new CreateWindowAction(
             request,
