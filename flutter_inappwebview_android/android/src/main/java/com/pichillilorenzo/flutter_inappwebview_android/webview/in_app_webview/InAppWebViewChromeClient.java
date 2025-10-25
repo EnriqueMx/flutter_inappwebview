@@ -633,6 +633,8 @@ public String convertWithStream(Map<?, ?> map) {
   @Override
   public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, final Message resultMsg) {
     int windowId = 0;
+    Log.v("im.ea.sysmax-DEBUG", "onCreateWindow 001");
+
     if (plugin != null && plugin.inAppWebViewManager != null) {
       plugin.inAppWebViewManager.windowAutoincrementId++;
       windowId = plugin.inAppWebViewManager.windowAutoincrementId;
