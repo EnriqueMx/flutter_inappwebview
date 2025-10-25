@@ -630,6 +630,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
   public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, final Message resultMsg) {
     int windowId = 0;
    Log.e(LOG_TAG, "init step 000");
+ Log.e(LOG_TAG, "init step 000aaa-"+resultMsg.toString());
 
     if (plugin != null && plugin.inAppWebViewManager != null) {
       plugin.inAppWebViewManager.windowAutoincrementId++;
@@ -637,6 +638,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
     }
 
      WebView.HitTestResult result = view.getHitTestResult();
+    Log.e(LOG_TAG, "init step 000a-"+result.toString());
     String url = result.getExtra();
  Log.e(LOG_TAG, "init step 001-"+Integer.toString(result.getType()));
     // Ensure that images with hyperlink return the correct URL, not the image source
