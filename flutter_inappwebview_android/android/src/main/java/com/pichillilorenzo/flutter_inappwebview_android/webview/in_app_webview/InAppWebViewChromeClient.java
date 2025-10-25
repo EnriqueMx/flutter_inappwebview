@@ -642,6 +642,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
       view.requestFocusNodeHref(href);
       Bundle data = href.getData();
       if (data != null) {
+        System.err.format("DEBUG JAVA-DATA: %s\n", data);
         String imageUrl = data.getString("url");
         if (imageUrl != null && !imageUrl.isEmpty()) {
           url = imageUrl;
