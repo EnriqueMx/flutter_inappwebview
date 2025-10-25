@@ -122,6 +122,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
   public InAppWebViewChromeClient(@NonNull final InAppWebViewFlutterPlugin plugin,
                                   @NonNull InAppWebView inAppWebView, InAppBrowserDelegate inAppBrowserDelegate) {
     super();
+    Log.e(LOG_TAG, "init step 001");
     this.plugin = plugin;
     this.inAppWebView = inAppWebView;
     this.inAppBrowserDelegate = inAppBrowserDelegate;
@@ -624,16 +625,11 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
     dialogs.put(alertDialog, result);
     alertDialog.show();
   }
-public String convertWithStream(Map<?, ?> map) {
-    String mapAsString = map.keySet().stream()
-      .map(key -> key + "=" + map.get(key))
-      .collect(Collectors.joining(", ", "{", "}"));
-    return mapAsString;
-}
+
   @Override
   public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, final Message resultMsg) {
     int windowId = 0;
-    Log.v("im.ea.sysmax-DEBUG", "onCreateWindow 001");
+   Log.e(LOG_TAG, "init step 002");
 
     if (plugin != null && plugin.inAppWebViewManager != null) {
       plugin.inAppWebViewManager.windowAutoincrementId++;
