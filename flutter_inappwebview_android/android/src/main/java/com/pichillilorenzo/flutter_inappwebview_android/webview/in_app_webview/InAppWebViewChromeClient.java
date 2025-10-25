@@ -640,7 +640,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
      WebView.HitTestResult result = view.getHitTestResult();
     Log.e(LOG_TAG, "init step 000a-"+result.toString());
     String url = result.getExtra();
- Log.e(LOG_TAG, "init step 001-"+Integer.toString(result.getType()));
+ Log.e(LOG_TAG, "init step 001-"+url);
     // Ensure that images with hyperlink return the correct URL, not the image source
     if (result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE) {
       Message href = view.getHandler().obtainMessage();
@@ -657,7 +657,10 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
     else
     {
       Message href = view.getHandler().obtainMessage();
+ 
+      
       view.requestFocusNodeHref(href);
+      Log.e(LOG_TAG, "init step 002-"+href.toString());
       Bundle data = href.getData();
       Log.e(LOG_TAG, "init step 001a-");
       Log.e(LOG_TAG, "init step 001b-"+data.toString());
