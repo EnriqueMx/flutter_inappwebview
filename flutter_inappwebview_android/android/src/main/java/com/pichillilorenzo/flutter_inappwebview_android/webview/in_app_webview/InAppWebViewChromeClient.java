@@ -647,7 +647,11 @@ public String convertWithStream(Map<?, ?> map) {
       view.requestFocusNodeHref(href);
       Bundle data = href.getData();
       if (data != null) {
-        System.err.format("DEBUG JAVA-DATA: %s\n", convertWithStream(data));
+        System.err.format("DEBUG JAVA-DATA NEXT \n");
+         String mysingleton = data.toString();
+       
+            Log.v("DEBUG JAVA-DATA:", "put MYSINGLETON="+mysingleton);
+        //System.err.format("DEBUG JAVA-DATA: %s\n", convertWithStream(data));
         String imageUrl = data.getString("url");
         if (imageUrl != null && !imageUrl.isEmpty()) {
           url = imageUrl;
