@@ -624,7 +624,12 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
     dialogs.put(alertDialog, result);
     alertDialog.show();
   }
-
+public String convertWithStream(Map<?, ?> map) {
+    String mapAsString = map.keySet().stream()
+      .map(key -> key + "=" + map.get(key))
+      .collect(Collectors.joining(", ", "{", "}"));
+    return mapAsString;
+}
   @Override
   public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, final Message resultMsg) {
     int windowId = 0;
@@ -642,7 +647,7 @@ public class InAppWebViewChromeClient extends WebChromeClient implements PluginR
       view.requestFocusNodeHref(href);
       Bundle data = href.getData();
       if (data != null) {
-        System.err.format("DEBUG JAVA-DATA: %s\n", data);
+        System.err.format("DEBUG JAVA-DATA: %s\n", convertWithStream(data));
         String imageUrl = data.getString("url");
         if (imageUrl != null && !imageUrl.isEmpty()) {
           url = imageUrl;
